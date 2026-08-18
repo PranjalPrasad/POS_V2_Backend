@@ -29,32 +29,27 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    // CREATE
     @PostMapping("/create-recipe")
     public ResponseEntity<RecipeResponseDto> createRecipe(@RequestBody RecipeRequestDto requestDto) {
         RecipeResponseDto response = recipeService.createRecipe(requestDto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    // READ - all
     @GetMapping("/get-all-recipes")
     public ResponseEntity<List<RecipeResponseDto>> getAllRecipes() {
         return ResponseEntity.ok(recipeService.getAllRecipes());
     }
 
-    // READ - by primary key
     @GetMapping("/get-recipe-by-id/{id}")
     public ResponseEntity<RecipeResponseDto> getRecipeById(@PathVariable Long id) {
         return ResponseEntity.ok(recipeService.getRecipeById(id));
     }
 
-    // READ - by business key (recipeId, e.g. REC-001)
     @GetMapping("/get-recipe-by-recipe-id/recipe-code/{recipeId}")
     public ResponseEntity<RecipeResponseDto> getRecipeByRecipeId(@PathVariable String recipeId) {
         return ResponseEntity.ok(recipeService.getRecipeByRecipeId(recipeId));
     }
 
-    // READ - by tenant + branch
     @GetMapping("/get-recipes-by-tenant-and-branch/tenant/{tenantId}/branch/{branchId}")
     public ResponseEntity<List<RecipeResponseDto>> getRecipesByTenantAndBranch(
             @PathVariable String tenantId,
@@ -62,13 +57,11 @@ public class RecipeController {
         return ResponseEntity.ok(recipeService.getRecipesByTenantAndBranch(tenantId, branchId));
     }
 
-    // READ - active only
     @GetMapping("/get-active-recipes/active")
     public ResponseEntity<List<RecipeResponseDto>> getActiveRecipes() {
         return ResponseEntity.ok(recipeService.getActiveRecipes());
     }
 
-    // UPDATE - full replace (ingredients list fully replaced too)
     @PutMapping("/update-recipe/{id}")
     public ResponseEntity<RecipeResponseDto> updateRecipe(
             @PathVariable Long id,
@@ -76,7 +69,6 @@ public class RecipeController {
         return ResponseEntity.ok(recipeService.updateRecipe(id, requestDto));
     }
 
-    // UPDATE - partial patch
     @PatchMapping("/patch-recipe/{id}")
     public ResponseEntity<RecipeResponseDto> patchRecipe(
             @PathVariable Long id,
@@ -84,7 +76,6 @@ public class RecipeController {
         return ResponseEntity.ok(recipeService.patchRecipe(id, requestDto));
     }
 
-    // DELETE
     @DeleteMapping("/delete-recipe/{id}")
     public ResponseEntity<Void> deleteRecipe(@PathVariable Long id) {
         recipeService.deleteRecipe(id);

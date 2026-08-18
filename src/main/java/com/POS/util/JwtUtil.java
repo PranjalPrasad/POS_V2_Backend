@@ -13,7 +13,7 @@ import java.util.Date;
 public class JwtUtil {
 
     private final String SECRET_KEY = "this-is-a-demo-secret-key-for-jwt-please-change-it-1234567890";
-    private final long EXPIRATION_TIME_MS = 1000 * 60 * 60; // 1 hour
+    private final long EXPIRATION_TIME_MS = 1000 * 60 * 60;
 
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());

@@ -14,13 +14,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
- * NOTE: product, yield, costing, inventoryImpact are flattened directly
- * as plain columns (no @Embeddable/@Embedded).
- * "ingredients" is an array in the JSON, so it is modeled as a proper
- * child entity (RecipeIngredientEntity) with a normal @OneToMany
- * relationship - this is standard relational design, not an embedded class.
- */
 @Entity
 @Table(name = "recipe")
 public class RecipeEntity {

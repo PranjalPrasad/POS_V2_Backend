@@ -8,12 +8,6 @@ import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
 
-/*
- * NOTE: tableInformation.* and status.* are flattened directly as plain
- * columns (no @Embeddable/@Embedded). currentOrder is null in the sample
- * payload, so it is modeled as a simple nullable reference field
- * (currentOrderId) rather than a nested object.
- */
 @Entity
 @Table(name = "restaurant_table")
 public class TableEntity {

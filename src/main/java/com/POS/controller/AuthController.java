@@ -38,7 +38,6 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
     }
 
-    // Sample protected endpoint - send header: Authorization: Bearer <token>
     @GetMapping("/profile")
     public ResponseEntity<Map<String, Object>> profile(@RequestHeader(value = "Authorization", required = false) String authHeader) {
         Map<String, Object> result = new HashMap<>();

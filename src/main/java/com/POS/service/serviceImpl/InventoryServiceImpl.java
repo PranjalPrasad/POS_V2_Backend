@@ -212,11 +212,6 @@ public class InventoryServiceImpl implements InventoryService {
         return dto;
     }
 
-    /**
-     * Recomputes availableStock and stockStatus based on the current values
-     * present on the entity. Only runs when the underlying fields are present,
-     * so callers can still override stockStatus/availableStock explicitly.
-     */
     private void recalculateDerivedFields(InventoryEntity entity) {
         if (entity.getCurrentStock() != null && entity.getReservedStock() != null) {
             entity.setAvailableStock(entity.getCurrentStock() - entity.getReservedStock());

@@ -18,7 +18,6 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private JwtUtil jwtUtil;
 
-    // Plain 10-digit mobile number pattern check (manual, no annotation-based validation)
     private static final String MOBILE_NUMBER_REGEX = "^[0-9]{10}$";
 
     @Override

@@ -114,7 +114,6 @@ public class RecipeServiceImpl implements RecipeService {
         if (requestDto.getAutoDeductStock() != null) entity.setAutoDeductStock(requestDto.getAutoDeductStock());
         if (requestDto.getIsActive() != null) entity.setIsActive(requestDto.getIsActive());
 
-        // if ingredients sent in PATCH, replace the whole list (partial-item patch not supported)
         if (requestDto.getIngredients() != null) {
             replaceIngredients(entity, requestDto.getIngredients());
         }

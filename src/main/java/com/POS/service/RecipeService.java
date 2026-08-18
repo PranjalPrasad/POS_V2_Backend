@@ -20,11 +20,8 @@ public interface RecipeService {
 
     List<RecipeResponseDto> getActiveRecipes();
 
-    // Full update - all fields + full ingredients list expected
     RecipeResponseDto updateRecipe(Long id, RecipeRequestDto requestDto);
 
-    // Partial update - only non-null top-level fields applied;
-    // ingredients list, if sent, fully replaces the existing list
     RecipeResponseDto patchRecipe(Long id, RecipeRequestDto requestDto);
 
     void deleteRecipe(Long id);
