@@ -1,7 +1,7 @@
 package com.POS.controller;
 
 import com.POS.dto.requestDto.InventoryRequestDto;
-import com.POS.dto.resposneDto.InventoryResponseDto;
+import com.POS.dto.responseDto.InventoryResponseDto;
 import com.POS.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

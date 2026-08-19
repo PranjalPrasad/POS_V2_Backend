@@ -1,7 +1,7 @@
 package com.POS.controller;
 
 import com.POS.dto.requestDto.ProductRequestDto;
-import com.POS.dto.resposneDto.ProductResponseDto;
+import com.POS.dto.responseDto.ProductResponseDto;
 import com.POS.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

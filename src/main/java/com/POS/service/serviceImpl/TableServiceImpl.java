@@ -1,7 +1,7 @@
 package com.POS.service.serviceImpl;
 
 import com.POS.dto.requestDto.TableRequestDto;
-import com.POS.dto.resposneDto.TableResponseDto;
+import com.POS.dto.responseDto.TableResponseDto;
 import com.POS.entity.TableEntity;
 import com.POS.repository.TableRepository;
 import com.POS.service.TableService;

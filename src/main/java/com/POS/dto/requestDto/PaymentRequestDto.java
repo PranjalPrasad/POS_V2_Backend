@@ -1,0 +1,147 @@
+package com.POS.dto.requestDto;
+
+public class PaymentRequestDto {
+
+    private String paymentId;
+    private String tenantId;
+    private String branchId;
+
+    private String saleId;
+    private String orderId;
+    private String invoiceId;
+    private String customerId;
+
+    private Double amount;
+    private String currency;
+    private String method;
+    private String status;
+
+    private String transactionReference;
+    private String gateway;
+
+    private Boolean isRefunded;
+    private Double refundedAmount;
+
+    public PaymentRequestDto() {
+    }
+
+    public String getPaymentId() {
+        return paymentId;
+    }
+
+    public void setPaymentId(String paymentId) {
+        this.paymentId = paymentId;
+    }
+
+    public String getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    public String getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(String branchId) {
+        this.branchId = branchId;
+    }
+
+    public String getSaleId() {
+        return saleId;
+    }
+
+    public void setSaleId(String saleId) {
+        this.saleId = saleId;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getInvoiceId() {
+        return invoiceId;
+    }
+
+    public void setInvoiceId(String invoiceId) {
+        this.invoiceId = invoiceId;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getTransactionReference() {
+        return transactionReference;
+    }
+
+    public void setTransactionReference(String transactionReference) {
+        this.transactionReference = transactionReference;
+    }
+
+    public String getGateway() {
+        return gateway;
+    }
+
+    public void setGateway(String gateway) {
+        this.gateway = gateway;
+    }
+
+    public Boolean getIsRefunded() {
+        return isRefunded;
+    }
+
+    public void setIsRefunded(Boolean isRefunded) {
+        this.isRefunded = isRefunded;
+    }
+
+    public Double getRefundedAmount() {
+        return refundedAmount;
+    }
+
+    public void setRefundedAmount(Double refundedAmount) {
+        this.refundedAmount = refundedAmount;
+    }
+}

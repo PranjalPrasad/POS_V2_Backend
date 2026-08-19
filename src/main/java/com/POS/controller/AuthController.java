@@ -1,7 +1,7 @@
 package com.POS.controller;
 
 import com.POS.dto.requestDto.LoginRequestDto;
-import com.POS.dto.resposneDto.LoginResponseDto;
+import com.POS.dto.responseDto.LoginResponseDto;
 import com.POS.entity.User;
 import com.POS.repository.UserRepository;
 import com.POS.service.AuthService;

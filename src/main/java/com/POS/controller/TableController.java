@@ -1,7 +1,7 @@
 package com.POS.controller;
 
 import com.POS.dto.requestDto.TableRequestDto;
-import com.POS.dto.resposneDto.TableResponseDto;
+import com.POS.dto.responseDto.TableResponseDto;
 import com.POS.service.TableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

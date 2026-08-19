@@ -1,7 +1,7 @@
 package com.POS.service.serviceImpl;
 
 import com.POS.dto.requestDto.InventoryRequestDto;
-import com.POS.dto.resposneDto.InventoryResponseDto;
+import com.POS.dto.responseDto.InventoryResponseDto;
 import com.POS.entity.InventoryEntity;
 import com.POS.repository.InventoryRepository;
 import com.POS.service.InventoryService;

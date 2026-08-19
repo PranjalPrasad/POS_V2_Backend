@@ -1,4 +1,4 @@
-package com.POS.dto.resposneDto;
+package com.POS.dto.responseDto;
 
 import java.time.LocalDateTime;
 import java.util.List;

@@ -2,7 +2,7 @@ package com.POS.service;
 
 
 import com.POS.dto.requestDto.ProductRequestDto;
-import com.POS.dto.resposneDto.ProductResponseDto;
+import com.POS.dto.responseDto.ProductResponseDto;
 
 import java.util.List;
 

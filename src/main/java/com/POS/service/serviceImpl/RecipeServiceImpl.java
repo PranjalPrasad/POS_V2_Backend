@@ -2,8 +2,8 @@ package com.POS.service.serviceImpl;
 
 import com.POS.dto.requestDto.IngredientRequestDto;
 import com.POS.dto.requestDto.RecipeRequestDto;
-import com.POS.dto.resposneDto.IngredientResponseDto;
-import com.POS.dto.resposneDto.RecipeResponseDto;
+import com.POS.dto.responseDto.IngredientResponseDto;
+import com.POS.dto.responseDto.RecipeResponseDto;
 import com.POS.entity.RecipeEntity;
 import com.POS.entity.RecipeIngredientEntity;
 import com.POS.repository.RecipeRepository;

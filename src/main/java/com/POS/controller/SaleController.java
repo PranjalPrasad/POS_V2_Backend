@@ -3,7 +3,7 @@ package com.POS.controller;
 import com.POS.dto.requestDto.PaymentUpdateRequestDto;
 import com.POS.dto.requestDto.SalePatchRequestDto;
 import com.POS.dto.requestDto.SaleRequestDto;
-import com.POS.dto.resposneDto.SaleResponseDto;
+import com.POS.dto.responseDto.SaleResponseDto;
 import com.POS.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

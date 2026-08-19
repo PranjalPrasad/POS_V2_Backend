@@ -1,7 +1,7 @@
 package com.POS.service.serviceImpl;
 
 import com.POS.dto.requestDto.ProductRequestDto;
-import com.POS.dto.resposneDto.ProductResponseDto;
+import com.POS.dto.responseDto.ProductResponseDto;
 import com.POS.entity.Product;
 import com.POS.exception.ProductNotFoundException;
 import com.POS.repository.ProductRepository;

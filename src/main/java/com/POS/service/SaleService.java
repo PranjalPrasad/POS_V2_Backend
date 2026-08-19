@@ -4,7 +4,7 @@ package com.POS.service;
 import com.POS.dto.requestDto.PaymentUpdateRequestDto;
 import com.POS.dto.requestDto.SalePatchRequestDto;
 import com.POS.dto.requestDto.SaleRequestDto;
-import com.POS.dto.resposneDto.SaleResponseDto;
+import com.POS.dto.responseDto.SaleResponseDto;
 
 import java.util.List;
 
