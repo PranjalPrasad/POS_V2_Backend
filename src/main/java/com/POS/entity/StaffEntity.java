@@ -6,16 +6,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "customers")
-public class CustomerEntity {
+@Table(name = "staff")
+public class StaffEntity {
 
     @Id
-    @Column(name = "customer_id", unique = true, nullable = false, length = 50)
-    private String customerId;
+    @Column(name = "staff_id", unique = true, nullable = false, length = 50)
+    private String staffId;
 
     @Column(name = "tenant_id")
     private String tenantId;
@@ -26,23 +25,23 @@ public class CustomerEntity {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "role")
+    private String role;
+
     @Column(name = "email")
     private String email;
 
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "mobile_number")
+    private String mobileNumber;
 
-    @Column(name = "customer_group")
-    private String customerGroup;
+    @Column(name = "password")
+    private String password;
 
-    @Column(name = "total_orders")
-    private Integer totalOrders;
-
-    @Column(name = "total_spent")
-    private Double totalSpent;
+    @Column(name = "schedule")
+    private String schedule;
 
     @Column(name = "status")
     private String status;
@@ -56,7 +55,7 @@ public class CustomerEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    public CustomerEntity() {
+    public StaffEntity() {
     }
 
     @PrePersist
@@ -64,12 +63,6 @@ public class CustomerEntity {
         LocalDateTime now = LocalDateTime.now();
         this.createdAt = now;
         this.updatedAt = now;
-        if (this.totalOrders == null) {
-            this.totalOrders = 0;
-        }
-        if (this.totalSpent == null) {
-            this.totalSpent = 0.0;
-        }
         if (this.isActive == null) {
             this.isActive = true;
         }
@@ -82,12 +75,12 @@ public class CustomerEntity {
 
     // ---------- Getters & Setters ----------
 
-    public String getCustomerId() {
-        return customerId;
+    public String getStaffId() {
+        return staffId;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setStaffId(String staffId) {
+        this.staffId = staffId;
     }
 
     public String getTenantId() {
@@ -114,6 +107,14 @@ public class CustomerEntity {
         this.name = name;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -130,36 +131,28 @@ public class CustomerEntity {
         this.phone = phone;
     }
 
-    public String getAddress() {
-        return address;
+    public String getMobileNumber() {
+        return mobileNumber;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
-    public String getCustomerGroup() {
-        return customerGroup;
+    public String getPassword() {
+        return password;
     }
 
-    public void setCustomerGroup(String customerGroup) {
-        this.customerGroup = customerGroup;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public Integer getTotalOrders() {
-        return totalOrders;
+    public String getSchedule() {
+        return schedule;
     }
 
-    public void setTotalOrders(Integer totalOrders) {
-        this.totalOrders = totalOrders;
-    }
-
-    public Double getTotalSpent() {
-        return totalSpent;
-    }
-
-    public void setTotalSpent(Double totalSpent) {
-        this.totalSpent = totalSpent;
+    public void setSchedule(String schedule) {
+        this.schedule = schedule;
     }
 
     public String getStatus() {

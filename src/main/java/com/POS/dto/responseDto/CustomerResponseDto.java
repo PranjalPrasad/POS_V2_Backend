@@ -1,86 +1,47 @@
-package com.POS.entity;
+package com.POS.dto.responseDto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "customers")
-public class CustomerEntity {
+public class CustomerResponseDto {
 
-    @Id
-    @Column(name = "customer_id", unique = true, nullable = false, length = 50)
     private String customerId;
-
-    @Column(name = "tenant_id")
     private String tenantId;
-
-    @Column(name = "branch_id")
     private String branchId;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "email")
     private String email;
-
-    @Column(name = "phone")
     private String phone;
-
-    @Column(name = "address")
     private String address;
-
-    @Column(name = "customer_group")
     private String customerGroup;
-
-    @Column(name = "total_orders")
     private Integer totalOrders;
-
-    @Column(name = "total_spent")
     private Double totalSpent;
-
-    @Column(name = "status")
     private String status;
-
-    @Column(name = "is_active")
     private Boolean isActive;
-
-    @Column(name = "created_at")
     private LocalDateTime createdAt;
-
-    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    public CustomerEntity() {
+    public CustomerResponseDto() {
     }
 
-    @PrePersist
-    protected void onCreate() {
-        LocalDateTime now = LocalDateTime.now();
-        this.createdAt = now;
-        this.updatedAt = now;
-        if (this.totalOrders == null) {
-            this.totalOrders = 0;
-        }
-        if (this.totalSpent == null) {
-            this.totalSpent = 0.0;
-        }
-        if (this.isActive == null) {
-            this.isActive = true;
-        }
+    public CustomerResponseDto(String customerId, String tenantId, String branchId, String name,
+                               String email, String phone, String address, String customerGroup,
+                               Integer totalOrders, Double totalSpent, String status, Boolean isActive,
+                               LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.customerId = customerId;
+        this.tenantId = tenantId;
+        this.branchId = branchId;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.customerGroup = customerGroup;
+        this.totalOrders = totalOrders;
+        this.totalSpent = totalSpent;
+        this.status = status;
+        this.isActive = isActive;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    // ---------- Getters & Setters ----------
 
     public String getCustomerId() {
         return customerId;
