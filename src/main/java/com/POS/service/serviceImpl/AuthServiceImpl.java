@@ -23,7 +23,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public LoginResponseDto login(LoginRequestDto requestDto) {
 
-        String mobileNumber = requestDto.getMobileNumber();
+        String mobileNumber = requestDto.getEmail(); // field naam "email" hai, value mobile number
         String password = requestDto.getPassword();
 
         if (mobileNumber == null || mobileNumber.trim().isEmpty()) {
@@ -48,7 +48,8 @@ public class AuthServiceImpl implements AuthService {
             return new LoginResponseDto(false, "Invalid password", null, null, null);
         }
 
-        String token = jwtUtil.generateToken(user.getMobileNumber());
+        // rememberMe true -> long-lived token, false -> normal token
+        String token = jwtUtil.generateToken(user.getMobileNumber(), requestDto.isRememberMe());
 
         return new LoginResponseDto(true, "Login successful", token, user.getMobileNumber(), user.getName());
     }

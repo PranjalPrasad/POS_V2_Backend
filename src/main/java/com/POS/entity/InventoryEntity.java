@@ -1,9 +1,13 @@
 package com.POS.entity;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,6 +26,11 @@ public class InventoryEntity {
     private String productId;
     private String productName;
     private String productSku;
+
+    // ---- NEW: frontend "productImage" gap ----
+    @Lob
+    @Column(name = "product_image", columnDefinition = "LONGBLOB")
+    private byte[] productImage;
 
     // ---- warehouse.* (flattened) ----
     private String warehouseId;
@@ -110,6 +119,14 @@ public class InventoryEntity {
 
     public void setProductSku(String productSku) {
         this.productSku = productSku;
+    }
+
+    public byte[] getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(byte[] productImage) {
+        this.productImage = productImage;
     }
 
     public String getWarehouseId() {

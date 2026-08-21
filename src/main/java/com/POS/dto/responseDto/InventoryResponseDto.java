@@ -13,6 +13,9 @@ public class InventoryResponseDto {
     private String productName;
     private String productSku;
 
+    // ---------- NEW: byte[] — JSON response mein automatically Base64 ban jayega ----------
+    private byte[] productImage;
+
     private String warehouseId;
     private String warehouseName;
 
@@ -94,6 +97,14 @@ public class InventoryResponseDto {
 
     public void setProductSku(String productSku) {
         this.productSku = productSku;
+    }
+
+    public byte[] getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(byte[] productImage) {
+        this.productImage = productImage;
     }
 
     public String getWarehouseId() {

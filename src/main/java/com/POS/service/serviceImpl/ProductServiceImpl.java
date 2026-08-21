@@ -8,7 +8,9 @@ import com.POS.repository.ProductRepository;
 import com.POS.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductResponseDto createProduct(ProductRequestDto requestDto) {
+    public ProductResponseDto createProduct(ProductRequestDto requestDto, MultipartFile image) throws IOException {
 
         if (requestDto.getProductId() != null
                 && productRepository.existsByProductId(requestDto.getProductId())) {
@@ -34,6 +36,11 @@ public class ProductServiceImpl implements ProductService {
 
         Product product = new Product();
         mapRequestToEntity(requestDto, product);
+
+        if (image != null && !image.isEmpty()) {
+            product.setProductImageData(image.getBytes());
+        }
+
         product.setCreatedAt(LocalDateTime.now());
         product.setUpdatedAt(LocalDateTime.now());
 
@@ -68,19 +75,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductResponseDto updateProduct(String productId, ProductRequestDto requestDto) {
+    public ProductResponseDto updateProduct(String productId, ProductRequestDto requestDto, MultipartFile image) throws IOException {
         Product product = findProductOrThrow(productId);
         mapRequestToEntity(requestDto, product);
+
+        if (image != null && !image.isEmpty()) {
+            product.setProductImageData(image.getBytes());
+        }
+
         product.setUpdatedAt(LocalDateTime.now());
         Product updated = productRepository.save(product);
         return mapEntityToResponse(updated);
     }
 
     @Override
-    public ProductResponseDto patchProduct(String productId, ProductRequestDto requestDto) {
+    public ProductResponseDto patchProduct(String productId, ProductRequestDto requestDto, MultipartFile image) throws IOException {
         Product product = findProductOrThrow(productId);
 
-        // Only update fields that are actually sent (non-null) in the request
         if (requestDto.getName() != null) product.setName(requestDto.getName());
         if (requestDto.getCode() != null) product.setCode(requestDto.getCode());
         if (requestDto.getSku() != null) product.setSku(requestDto.getSku());
@@ -111,6 +122,12 @@ public class ProductServiceImpl implements ProductService {
         if (requestDto.getTrackExpiry() != null) product.setTrackExpiry(requestDto.getTrackExpiry());
         if (requestDto.getMinimumStock() != null) product.setMinimumStock(requestDto.getMinimumStock());
         if (requestDto.getMaximumStock() != null) product.setMaximumStock(requestDto.getMaximumStock());
+
+        if (requestDto.getProductStock() != null) product.setProductStock(requestDto.getProductStock());
+
+        if (image != null && !image.isEmpty()) {
+            product.setProductImageData(image.getBytes());
+        }
 
         if (requestDto.getVariants() != null) product.setVariants(requestDto.getVariants());
         if (requestDto.getIsActive() != null) product.setIsActive(requestDto.getIsActive());
@@ -173,6 +190,8 @@ public class ProductServiceImpl implements ProductService {
         product.setMinimumStock(dto.getMinimumStock());
         product.setMaximumStock(dto.getMaximumStock());
 
+        product.setProductStock(dto.getProductStock());
+
         product.setVariants(dto.getVariants());
         product.setIsActive(dto.getIsActive());
     }
@@ -215,6 +234,9 @@ public class ProductServiceImpl implements ProductService {
         dto.setTrackExpiry(product.getTrackExpiry());
         dto.setMinimumStock(product.getMinimumStock());
         dto.setMaximumStock(product.getMaximumStock());
+
+        dto.setProductStock(product.getProductStock());
+        dto.setProductImageData(product.getProductImageData());
 
         dto.setVariants(product.getVariants());
         dto.setIsActive(product.getIsActive());

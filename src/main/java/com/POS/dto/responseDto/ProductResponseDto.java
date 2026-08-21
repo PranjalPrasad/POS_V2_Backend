@@ -40,6 +40,11 @@ public class ProductResponseDto {
     private Integer minimumStock;
     private Integer maximumStock;
 
+    private Integer productStock;
+
+    // ---------- byte[] — JSON response mein automatically Base64 string ban jayega ----------
+    private byte[] productImageData;
+
     private String variants;
 
     private Boolean isActive;
@@ -279,6 +284,22 @@ public class ProductResponseDto {
 
     public void setMaximumStock(Integer maximumStock) {
         this.maximumStock = maximumStock;
+    }
+
+    public Integer getProductStock() {
+        return productStock;
+    }
+
+    public void setProductStock(Integer productStock) {
+        this.productStock = productStock;
+    }
+
+    public byte[] getProductImageData() {
+        return productImageData;
+    }
+
+    public void setProductImageData(byte[] productImageData) {
+        this.productImageData = productImageData;
     }
 
     public String getVariants() {

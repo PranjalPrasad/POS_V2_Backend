@@ -5,18 +5,12 @@ import com.POS.dto.responseDto.ProductResponseDto;
 import com.POS.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -30,9 +24,11 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @PostMapping("/create-product")
-    public ResponseEntity<ProductResponseDto> createProduct(@RequestBody ProductRequestDto requestDto) {
-        ProductResponseDto response = productService.createProduct(requestDto);
+    @PostMapping(value = "/create-product", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<ProductResponseDto> createProduct(
+            @ModelAttribute ProductRequestDto requestDto,
+            @RequestParam(value = "image", required = false) MultipartFile image) throws IOException {
+        ProductResponseDto response = productService.createProduct(requestDto, image);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
@@ -56,19 +52,21 @@ public class ProductController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping("/update-product/{productId}")
+    @PutMapping(value = "/update-product/{productId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProductResponseDto> updateProduct(
             @PathVariable String productId,
-            @RequestBody ProductRequestDto requestDto) {
-        ProductResponseDto response = productService.updateProduct(productId, requestDto);
+            @ModelAttribute ProductRequestDto requestDto,
+            @RequestParam(value = "image", required = false) MultipartFile image) throws IOException {
+        ProductResponseDto response = productService.updateProduct(productId, requestDto, image);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PatchMapping("/patch-product/{productId}")
+    @PatchMapping(value = "/patch-product/{productId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProductResponseDto> patchProduct(
             @PathVariable String productId,
-            @RequestBody ProductRequestDto requestDto) {
-        ProductResponseDto response = productService.patchProduct(productId, requestDto);
+            @ModelAttribute ProductRequestDto requestDto,
+            @RequestParam(value = "image", required = false) MultipartFile image) throws IOException {
+        ProductResponseDto response = productService.patchProduct(productId, requestDto, image);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

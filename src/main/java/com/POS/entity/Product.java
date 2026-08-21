@@ -1,12 +1,12 @@
 package com.POS.entity;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Lob;
 
 import java.time.LocalDateTime;
 
@@ -28,7 +28,6 @@ public class Product {
     @Column(name = "branch_id", nullable = false)
     private String branchId;
 
-    // ---------- basicInformation (flattened) ----------
     @Column(name = "name")
     private String name;
 
@@ -47,7 +46,6 @@ public class Product {
     @Column(name = "product_type")
     private String productType;
 
-    // ---------- classification (flattened) ----------
     @Column(name = "category_id")
     private String categoryId;
 
@@ -60,7 +58,6 @@ public class Product {
     @Column(name = "brand_name")
     private String brandName;
 
-    // ---------- pricing (flattened) ----------
     @Column(name = "cost_price")
     private Double costPrice;
 
@@ -73,7 +70,6 @@ public class Product {
     @Column(name = "currency")
     private String currency;
 
-    // ---------- unit (flattened) ----------
     @Column(name = "unit_id")
     private String unitId;
 
@@ -83,7 +79,6 @@ public class Product {
     @Column(name = "unit_code")
     private String unitCode;
 
-    // ---------- tax (flattened) ----------
     @Column(name = "tax_id")
     private String taxId;
 
@@ -93,7 +88,6 @@ public class Product {
     @Column(name = "tax_rate")
     private Double taxRate;
 
-    // ---------- inventorySettings (flattened) ----------
     @Column(name = "track_inventory")
     private Boolean trackInventory;
 
@@ -109,9 +103,14 @@ public class Product {
     @Column(name = "maximum_stock")
     private Integer maximumStock;
 
-    // ---------- variants ----------
-    // Simplified: stored as comma separated variant names/codes.
-    // (Kept as a plain column instead of a separate embedded/child entity as requested.)
+    @Column(name = "product_stock")
+    private Integer productStock;
+
+    // ---------- UPDATED: ab byte[] hai, LONGBLOB mein store hoga ----------
+    @Lob
+    @Column(name = "product_image_data", columnDefinition = "LONGBLOB")
+    private byte[] productImageData;
+
     @Column(name = "variants")
     private String variants;
 
@@ -126,8 +125,6 @@ public class Product {
 
     public Product() {
     }
-
-    // ---------------- Getters & Setters ----------------
 
     public Long getId() {
         return id;
@@ -359,6 +356,22 @@ public class Product {
 
     public void setMaximumStock(Integer maximumStock) {
         this.maximumStock = maximumStock;
+    }
+
+    public Integer getProductStock() {
+        return productStock;
+    }
+
+    public void setProductStock(Integer productStock) {
+        this.productStock = productStock;
+    }
+
+    public byte[] getProductImageData() {
+        return productImageData;
+    }
+
+    public void setProductImageData(byte[] productImageData) {
+        this.productImageData = productImageData;
     }
 
     public String getVariants() {

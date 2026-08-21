@@ -7,7 +7,9 @@ import com.POS.repository.InventoryRepository;
 import com.POS.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -24,9 +26,14 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public InventoryResponseDto createInventory(InventoryRequestDto requestDto) {
+    public InventoryResponseDto createInventory(InventoryRequestDto requestDto, MultipartFile productImage) throws IOException {
         InventoryEntity entity = new InventoryEntity();
         mapDtoToEntity(requestDto, entity);
+
+        if (productImage != null && !productImage.isEmpty()) {
+            entity.setProductImage(productImage.getBytes());
+        }
+
         entity.setCreatedAt(LocalDateTime.now());
         entity.setUpdatedAt(LocalDateTime.now());
         recalculateDerivedFields(entity);
@@ -84,10 +91,15 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public InventoryResponseDto updateInventory(Long id, InventoryRequestDto requestDto) {
+    public InventoryResponseDto updateInventory(Long id, InventoryRequestDto requestDto, MultipartFile productImage) throws IOException {
         InventoryEntity entity = inventoryRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Inventory not found with id: " + id));
         mapDtoToEntity(requestDto, entity);
+
+        if (productImage != null && !productImage.isEmpty()) {
+            entity.setProductImage(productImage.getBytes());
+        }
+
         entity.setUpdatedAt(LocalDateTime.now());
         recalculateDerivedFields(entity);
         InventoryEntity saved = inventoryRepository.save(entity);
@@ -95,7 +107,7 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public InventoryResponseDto patchInventory(Long id, InventoryRequestDto requestDto) {
+    public InventoryResponseDto patchInventory(Long id, InventoryRequestDto requestDto, MultipartFile productImage) throws IOException {
         InventoryEntity entity = inventoryRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Inventory not found with id: " + id));
 
@@ -127,6 +139,10 @@ public class InventoryServiceImpl implements InventoryService {
         if (requestDto.getReorderQuantity() != null) entity.setReorderQuantity(requestDto.getReorderQuantity());
 
         if (requestDto.getStockStatus() != null) entity.setStockStatus(requestDto.getStockStatus());
+
+        if (productImage != null && !productImage.isEmpty()) {
+            entity.setProductImage(productImage.getBytes());
+        }
 
         entity.setUpdatedAt(LocalDateTime.now());
         recalculateDerivedFields(entity);
@@ -186,6 +202,7 @@ public class InventoryServiceImpl implements InventoryService {
         dto.setProductId(entity.getProductId());
         dto.setProductName(entity.getProductName());
         dto.setProductSku(entity.getProductSku());
+        dto.setProductImage(entity.getProductImage());
 
         dto.setWarehouseId(entity.getWarehouseId());
         dto.setWarehouseName(entity.getWarehouseName());
